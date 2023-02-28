@@ -1,0 +1,44 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.5'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id 'java'
+}
+
+group = 'myproject'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '8'
+
+repositories {
+	mavenCentral()
+
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter:2.7.2'
+	implementation 'org.springframework.boot:spring-boot-starter-web:2.7.2'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.2'
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate5:2.12.7'
+	implementation 'io.jsonwebtoken:jjwt:0.9.1' 
+	implementation 'org.springframework.security:spring-security-web:5.5.2'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	implementation 'javax.mail:javax.mail-api:1.6.2'
+	implementation 'com.sun.mail:javax.mail:1.6.2'
+	implementation 'com.slack.api:bolt:1.18.0'
+	implementation 'com.slack.api:bolt-servlet:1.18.0'
+	implementation 'com.slack.api:bolt-jetty:1.18.0'
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.7.2'
+	compileOnly('org.projectlombok:lombok')
+	runtimeOnly('org.springframework.boot:spring-boot-devtools')
+	runtimeOnly('mysql:mysql-connector-java')
+	annotationProcessor('org.projectlombok:lombok')
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+// cmd - cd app => ./gradlew bootJar // location is gradlew exists path // build lip 에 app.jar 이 생성되고 이걸 도커파일이랑 같은 위치에 둔다.
+bootJar {
+	archiveFileName= "app.jar"
+}
